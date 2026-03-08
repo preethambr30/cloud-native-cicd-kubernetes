@@ -1,0 +1,16 @@
+ Kubernetes Manifests
+
+This directory contains the **Kubernetes deployment configuration** for the microservices.
+
+ Components
+
+ Deployments
+ Services
+ Ingress
+ ConfigMaps
+ Secrets
+
+Each microservice will be deployed as a Kubernetes Deployment with rolling update strategy to ensure zero downtime.
+
+The manifests will be applied automatically through GitOps using ArgoCD.
+
