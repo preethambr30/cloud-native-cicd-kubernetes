@@ -1,11 +1,12 @@
- Docker Configuration
+  Docker Configuration
 
-This directory contains Dockerfiles for each microservice.
+This directory contains the Dockerfiles used to build container images for each microservice in this project.
 
-Each microservice will have its own container image.
+Each microservice is packaged as a separate Docker image.
 
-Example structure:
+ Folder Structure
 
+```
 docker
 ├── api-gateway
 │   └── Dockerfile
@@ -15,6 +16,22 @@ docker
 │   └── Dockerfile
 └── order-service
     └── Dockerfile
+```
 
-These images will be built automatically in the CI pipeline and pushed to Docker Hub.
+ Purpose
+
+These Dockerfiles are used in the CI/CD pipeline to:
+
+1. Build container images for each microservice
+2. Push the images to Docker Hub
+3. Deploy the images to the Kubernetes cluster
+
+ Workflow
+
+
+Developer → GitHub → GitHub Actions → Docker Build → Docker Hub → Kubernetes
+
+
+Kubernetes then pulls the images and runs them using **containerd** as the container runtime.
+
 
