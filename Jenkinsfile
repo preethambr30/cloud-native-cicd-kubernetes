@@ -21,13 +21,14 @@ pipeline {
 
         stage('SonarQube Scan') {
     steps {
-        script {
-            def services = ['api_gateway','order-service','product-service','user-service']
-
-            for (service in services) {
-                dir("services/${service}") {
-                    sh "mvn clean verify sonar:sonar"
-                }
+        dir('services/api_gateway/api_gateway') {
+            withSonarQubeEnv('SonarQube') {
+                sh '''
+                mvn clean verify sonar:sonar \
+                -Dsonar.projectKey=cloud-native-cicd \
+                -Dsonar.host.url=http://13.60.187.173:9000 \
+                -Dsonar.login=$SONAR_TOKEN
+                '''
             }
         }
     }
