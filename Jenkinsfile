@@ -19,6 +19,17 @@ pipeline {
             }
         }
 
+        stage('Debug Java') {
+    steps {
+        sh '''
+        java -version
+        javac -version
+        echo $JAVA_HOME
+        which javac
+        '''
+    }
+}
+
        stage('SonarQube Scan') {
     steps {
         script {
