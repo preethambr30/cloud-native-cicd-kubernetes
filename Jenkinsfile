@@ -20,27 +20,18 @@ pipeline {
         }
 
         stage('SonarQube Scan') {
+    steps {
+        script {
+            def services = ['api_gateway','order-service','product-service','user-service']
 
-            steps {
-
-                withSonarQubeEnv('SonarQube') {
-
-                    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
-
-                        sh '''
-                        mvn clean verify sonar:sonar \
-                        -Dsonar.projectKey=cloud-native-cicd \
-                        -Dsonar.host.url=$SONAR_HOST_URL \
-                        -Dsonar.login=$SONAR_TOKEN
-                        '''
-
-                    }
-
+            for (service in services) {
+                dir("services/${service}") {
+                    sh "mvn clean verify sonar:sonar"
                 }
-
             }
-
         }
+    }
+}
 
         stage('Quality Gate') {
 
