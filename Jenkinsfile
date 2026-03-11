@@ -20,19 +20,38 @@ pipeline {
         }
 
         stage('SonarQube Scan') {
-    steps {
-        dir('services/api_gateway/api_gateway') {
-            withSonarQubeEnv('SonarQube') {
-                sh '''
-                mvn clean verify sonar:sonar \
-                -Dsonar.projectKey=cloud-native-cicd \
-                -Dsonar.host.url=http://13.60.187.173:9000 \
-                -Dsonar.login=$SONAR_TOKEN
-                '''
+            steps {
+                script {
+
+                    def services = [
+                        "api_gateway",
+                        "order-service",
+                        "product-service",
+                        "user-service"
+                    ]
+
+                    for (svc in services) {
+
+                        dir("services/${svc}") {
+
+                            withSonarQubeEnv('SonarQube') {
+
+                                sh """
+                                mvn clean verify sonar:sonar \
+                                -Dsonar.projectKey=${svc} \
+                                -Dsonar.host.url=http://13.60.187.173:9000 \
+                                -Dsonar.login=\$SONAR_AUTH_TOKEN
+                                """
+
+                            }
+
+                        }
+
+                    }
+
+                }
             }
         }
-    }
-}
 
         stage('Quality Gate') {
 
