@@ -15,6 +15,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
+                git branch: 'main',
                 git 'https://github.com/preethambr30/cloud-native-cicd-kubernetes.git'
             }
         }
