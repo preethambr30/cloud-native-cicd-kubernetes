@@ -87,13 +87,28 @@ pipeline {
         }
 
         stage('Build JAR') {
+    steps {
+        script {
 
-            steps {
-
-                sh "mvn clean package"
-
+            dir('services/api-gateway') {
+                sh 'mvn clean package'
             }
 
+            dir('services/user-service') {
+                sh 'mvn clean package'
+            }
+
+            dir('services/order-service') {
+                sh 'mvn clean package'
+            }
+
+            dir('services/product-service') {
+                sh 'mvn clean package'
+            }
+
+        }
+    }
+}
         }
 
     }
