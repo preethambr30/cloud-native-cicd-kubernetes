@@ -109,5 +109,33 @@ pipeline {
           }
        }
      }
+        stage('Build Docker Images') {
+            steps {
+                script {
+
+                    sh 'docker build -t preethambr/api-gateway:latest services/api-gateway'
+                    sh 'docker build -t preethambr/user-service:latest services/user-service'
+                    sh 'docker build -t preethambr/order-service:latest services/order-service'
+                    sh 'docker build -t preethambr/product-service:latest services/product-service'
+
+                }
+            }
+        }
+
+        stage('Push Docker Images') {
+            steps {
+                script {
+
+                    sh 'docker push preethambr/api-gateway:latest'
+                    sh 'docker push preethambr/user-service:latest'
+                    sh 'docker push preethambr/order-service:latest'
+                    sh 'docker push preethambr/product-service:latest'
+
+                }
+            }
+        }
+
+    }
+}
   }
 }
