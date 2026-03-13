@@ -15,5 +15,6 @@ spec:
       containers:
       - name: order-service
         image: preethambr/order-service:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8083
