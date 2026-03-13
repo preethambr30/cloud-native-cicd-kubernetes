@@ -134,6 +134,35 @@ pipeline {
                 }
             }
         }
-
+       stage('Update Kubernetes Deployment Images'){ 
+           steps {
+            sh '''
+            kubectl set image deployment/api-gateway api-gateway=$DOCKER_USERNAME/api-gateway:$IMAGE_TAG
+            kubectl set image deployment/user-service user-service=$DOCKER_USERNAME/user-service:$IMAGE_TAG 
+            kubectl set image deployment/product-service product-service=$DOCKER_USERNAME/product-service:$IMAGE_TAG 
+            kubectl set image deployment/order-service order-service=$DOCKER_USERNAME/order-service:$IMAGE_TAG
+            ''' 
+        } 
+    } 
+        stage('Rolling Update Status') { 
+            steps { 
+                sh '''
+                kubectl rollout status deployment/api-gateway 
+                kubectl rollout status deployment/user-service
+                kubectl rollout status deployment/product-service 
+                kubectl rollout status deployment/order-service 
+                ''' 
+            } 
+        } 
+        stage('Verify Kubernetes Deployment') { 
+            steps { 
+                sh '''
+                kubectl get pods
+                kubectl get svc
+                kubectl get deployments 
+                ''' 
+            } 
+        } 
+    }
     }
 }
