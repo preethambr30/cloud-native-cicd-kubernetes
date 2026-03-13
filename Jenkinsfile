@@ -144,16 +144,6 @@ pipeline {
                '''
     }
 }
-
-stage('Verify Kubernetes Deployment') {
-    steps {
-        sh '''
-        kubectl get pods
-        kubectl get svc
-        kubectl get deployments
-        '''
-    }
-}
         stage('Verify Kubernetes Deployment') { 
             steps { 
                 sh '''
