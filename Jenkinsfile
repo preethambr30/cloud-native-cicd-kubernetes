@@ -50,6 +50,7 @@ pipeline {
                         sh """
                         mvn clean verify sonar:sonar \
                         -Dsonar.projectKey=${svc} \
+                        -Dsonar.projectName=${svc} \
                         -Dsonar.host.url=http://13.63.227.226:9000 \
                         -Dsonar.login=\$SONAR_AUTH_TOKEN \
                         -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
