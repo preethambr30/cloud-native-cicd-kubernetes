@@ -27,7 +27,7 @@ The following screenshot shows all running microservice pods inside the Kubernet
 
 Pods are responsible for running containerized microservices. Each service runs multiple pods to provide **high availability** and **scalability**.
 
-![Kubernetes Pods](pods.png)
+![Kubernetes Pods](images/pods.png)
 
 From the screenshot we can see:
 
@@ -44,7 +44,7 @@ This confirms that all services are successfully deployed in the cluster.
 
 Kubernetes Services allow communication between different microservices inside the cluster.
 
-![Kubernetes Services](services.png)
+![Kubernetes Services](images/services.png)
 
 In this project:
 
@@ -57,7 +57,7 @@ In this project:
 
 NGINX Ingress is used to route external traffic to the API Gateway.
 
-![Kubernetes Ingress](ingress.png)
+![Kubernetes Ingress](images/ingress.png)
 
 Ingress acts as the entry point for external traffic and forwards requests to the appropriate microservice.
 
@@ -67,7 +67,7 @@ Ingress acts as the entry point for external traffic and forwards requests to th
 
 The following screenshot shows the **User Service endpoint** accessed through the API Gateway.
 
-![User API](users.png)
+![User API](images/users.png)
 
 ---
 
@@ -75,7 +75,7 @@ The following screenshot shows the **User Service endpoint** accessed through th
 
 The following screenshot shows the **Order Service endpoint** accessed through the API Gateway.
 
-![Order API](orders.png)
+![Order API](images/orders.png)
 
 ---
 
@@ -83,7 +83,7 @@ The following screenshot shows the **Order Service endpoint** accessed through t
 
 The following screenshot shows the **Product Service endpoint** accessed through the API Gateway.
 
-![Product API](products.png)
+![Product API](images/products.png)
 
 ---
 
@@ -99,3 +99,4 @@ This project demonstrates a complete **DevOps workflow** including:
 - SonarQube for code quality analysis  
 
 This architecture represents a **real-world cloud-native deployment pipeline**.
+
