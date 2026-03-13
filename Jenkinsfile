@@ -135,15 +135,30 @@ pipeline {
             }
         }
        stage('Deploy to Kubernetes') {
-          steps {
+           steps {
               sh '''
-              kubectl rollout restart deployment/api-gateway
-              kubectl rollout restart deployment/user-service
-              kubectl rollout restart deployment/product-service
-              kubectl rollout restart deployment/order-service
-               '''
+              kubectl apply -f kubernetes/user-service.yaml
+              kubectl apply -f kubernetes/product-service.yaml
+              kubectl apply -f kubernetes/order-service.yaml
+
+              kubectl apply -f kubernetes/user-service-deployment.yaml
+              kubectl apply -f kubernetes/product-service-deployment.yaml
+              kubectl apply -f kubernetes/order-service-deployment.yaml
+
+        kubectl apply -f kubernetes/ingress.yaml
+        '''
     }
 }
+      stage('Update Kubernetes Images') {
+    steps {
+        sh '''
+        kubectl set image deployment/user-service user-service=$DOCKER_USERNAME/user-service:$BUILD_NUMBER
+        kubectl set image deployment/product-service product-service=$DOCKER_USERNAME/product-service:$BUILD_NUMBER
+        kubectl set image deployment/order-service order-service=$DOCKER_USERNAME/order-service:$BUILD_NUMBER
+        '''
+    }
+}
+        
         stage('Verify Kubernetes Deployment') { 
             steps { 
                 sh '''
