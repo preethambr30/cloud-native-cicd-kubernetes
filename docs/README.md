@@ -1,11 +1,17 @@
-Project Documentation
+ Project Documentation
 
-This directory contains additional documentation related to the project.
+This folder contains detailed documentation for the Cloud-Native CI/CD Pipeline project.
 
-Files may include:
+The documentation is divided into the following sections:
 
- Architecture diagrams
- Setup guides
- Deployment instructions
- Troubleshooting notes
+Architecture  
+Explains the overall system architecture and how the microservices communicate.
+
+Pipeline  
+Describes the CI/CD pipeline implemented using Jenkins and SonarQube.
+
+Setup Guide  
+Provides step-by-step instructions for running the project locally and deploying it to Kubernetes.
+
+These documents help understand how the system is built, deployed, and maintained.
 
