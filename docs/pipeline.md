@@ -26,7 +26,7 @@ Each stage runs automatically when new code is pushed to the repository.
 
 The following screenshot shows the Jenkins pipeline execution using the **Blue Ocean interface**.
 
-![Jenkins Blue Ocean Pipeline](./blueocean-pipeline.png)
+![Jenkins Blue Ocean Pipeline](images/blueocean-pipeline.png)
 
 Blue Ocean provides a visual representation of the pipeline stages, making it easier to track the progress of the CI/CD workflow.
 
@@ -45,7 +45,7 @@ The pipeline includes stages such as:
 
 SonarQube is integrated into the pipeline to analyze the quality of the source code.
 
-![SonarQube Dashboard](./sonarqube-dashboard.png)
+![SonarQube Dashboard](images/sonarqube-dashboard.png)
 
 SonarQube performs several checks including:
 
