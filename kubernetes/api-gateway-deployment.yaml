@@ -15,5 +15,6 @@ spec:
       containers:
       - name: api-gateway
         image: preethambr/api-gateway:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
